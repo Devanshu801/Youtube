@@ -27,7 +27,7 @@ public class UserController {
 	@Autowired
 	private UserService userService;
 	
-
+/*
 	@GetMapping("/")
 	private ResponseEntity<Optional<List<User>>> getAll(){
 		Optional<List<User>> userid = userService.getAll();
@@ -36,7 +36,7 @@ public class UserController {
 	}
 			return ResponseEntity.noContent().build();
 	 }
-	
+	*/
 	@DeleteMapping("{id}")
 	private ResponseEntity<User> deleteUser(@PathVariable("id") int id){
 		userService.deleteById(id);

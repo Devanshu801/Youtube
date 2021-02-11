@@ -40,10 +40,12 @@ public class UserService {
 		userDao = userRepositry.save(userDao);
 		return Optional.of(user);	
 		}
+	/*
 	public Optional<List<User>> getAll(){
 		List<UserDao> userdao =userRepositry.findAll();
 		return Optional.of(UserMapper.UserdbListtoUserList(userdao));
 	}
+	*/
 	public Optional<User> updateAddress(int id,Address address){
 		Optional<UserDao> user = userRepositry.findById(id);
 		if(user.isPresent()) {
@@ -52,8 +54,6 @@ public class UserService {
 		}
 		return Optional.of(UserMapper.UserDaoToUser(user.get()));
 	}
-	
-	
 		public void deleteById(int id) {
 		Optional<UserDao> user = userRepositry.findById(id);
 		if(user.isPresent()) {

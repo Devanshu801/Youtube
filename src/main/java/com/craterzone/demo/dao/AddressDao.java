@@ -169,6 +169,4 @@ public String toString() {
 			+ landmark + ", city=" + city + ", state=" + state + ", countryCode=" + countryCode + ", pincode=" + pincode
 			+ ", created=" + created + ", updated=" + updated + ", user=" + user + "]";
 }
-
-
 }

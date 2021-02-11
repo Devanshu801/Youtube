@@ -27,8 +27,7 @@ public class UserMapper {
 	public static Address AddressDaoToAddress(AddressDao addressdao) {
 		Address address = new Address();
 		BeanUtils.copyProperties(addressdao,address);
-		return address;
-		
+		return address;	
 	}
 	public static UserDao UserToUserDao(User user) {
 		UserDao userdao = new UserDao();
@@ -37,7 +36,9 @@ public class UserMapper {
 		userdao.getAddress().setUser(userdao);
 		return  userdao;
 	}
+	/*
 	public static List<User> UserdbListtoUserList(List<UserDao> list){
 		return list.stream().map(x -> UserDaoToUser(x)).collect(Collectors.toList());
 	}
+	*/
 }
