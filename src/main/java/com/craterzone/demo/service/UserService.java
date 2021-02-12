@@ -1,8 +1,7 @@
 package com.craterzone.demo.service;
 
-import java.util.List;
-import java.util.Optional;
 
+import java.util.Optional;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -14,7 +13,9 @@ import com.craterzone.demo.model.User;
 import com.craterzone.demo.repositry.UserRepositry;
 
 @Service
-public class UserService {
+public class UserService{
+	
+	
 	@Autowired
 	private	UserRepositry userRepositry;
 	
@@ -40,6 +41,19 @@ public class UserService {
 		userDao = userRepositry.save(userDao);
 		return Optional.of(user);	
 		}
+	public Optional<User> getUserById(User user){
+		Optional<UserDao> userid = userRepositry.findById(user.getId());
+			if(userid.isPresent()) {
+				return null;
+	}
+			UserDao userDao = UserMapper.UserToUserDao(user);
+			AddressDao addressDao = UserMapper.AddressToAddressDao(user.getAddress());
+			addressDao.setUser(userDao);
+			
+			userDao = userRepositry.save(userDao);
+			return Optional.of(user);
+	 }
+
 	/*
 	public Optional<List<User>> getAll(){
 		List<UserDao> userdao =userRepositry.findAll();
@@ -61,4 +75,5 @@ public class UserService {
 		}
 		return;
 		}
+		
 }

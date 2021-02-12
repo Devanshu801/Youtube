@@ -15,7 +15,6 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
-
 import com.craterzone.demo.model.Address;
 import com.craterzone.demo.model.User;
 import com.craterzone.demo.service.UserService;
@@ -24,23 +23,29 @@ import com.craterzone.demo.service.UserService;
 @RequestMapping("/api/v1/users")
 public class UserController {
 	
+	
+	
 	@Autowired
 	private UserService userService;
-	
+
+
+	//get getAll
 /*
-	@GetMapping("/")
+	@GetMapping("/user")
 	private ResponseEntity<Optional<List<User>>> getAll(){
 		Optional<List<User>> userid = userService.getAll();
-		if(userid!=null) {
+		if(userid!=null) 
 			return ResponseEntity.status(HttpStatus.OK).body(userid);
-	}
+	
 			return ResponseEntity.noContent().build();
 	 }
 	*/
+
+	
 	@DeleteMapping("{id}")
 	private ResponseEntity<User> deleteUser(@PathVariable("id") int id){
-		userService.deleteById(id);
 		if(!Objects.isNull(id)) {
+		userService.deleteById(id);
 		return ResponseEntity.status(HttpStatus.ACCEPTED).body(null);
 	}
 		return new ResponseEntity<User>(HttpStatus.BAD_REQUEST);
@@ -48,22 +53,23 @@ public class UserController {
 	
 	@PostMapping("")
 	private ResponseEntity<User> registerUser(@RequestBody User user){
-		
-		Optional<User> userd = userService.registerUser(user);
-		if(!Objects.isNull(userd)) {
+		//validation
+		Optional<User> userfromdatabase = userService.registerUser(user);
+		if(!Objects.isNull(userfromdatabase)) {
 			return ResponseEntity.status(HttpStatus.CREATED).body(user);
 		}
-		return ResponseEntity.status(HttpStatus.BAD_GATEWAY).body(user);
+		return new ResponseEntity<User>(HttpStatus.CONFLICT);
 	}
-	@PostMapping("/log")
+	@PostMapping("/login")
 	private ResponseEntity<Optional<User>> login(@RequestBody User user){
+		//validation
 		Optional<User> userdb = userService.login(user);
 		if(userdb!=null) {
-			return ResponseEntity.status(HttpStatus.ACCEPTED).body(userdb);
+			return ResponseEntity.status(HttpStatus.OK).body(userdb);
 		}
 		return ResponseEntity.status(HttpStatus.BAD_REQUEST).build();
 	}
-	@PatchMapping("{id}/fetch")
+	@PatchMapping("{id}/Address")
 	private ResponseEntity updateAddress(@PathVariable("id") int id,@RequestBody Address address) {
 		Optional<User> addres = userService.updateAddress(id, address);
 		if(addres.isPresent()) {
@@ -71,4 +77,5 @@ public class UserController {
 		}
 		return ResponseEntity.badRequest().build();
 	}
+	
 }

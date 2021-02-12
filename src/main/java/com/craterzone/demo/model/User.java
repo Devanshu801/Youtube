@@ -92,7 +92,13 @@ public class User {
 	public void setEmailPassword(String emailPassword) {
 		this.emailPassword = emailPassword;
 	}
+	@Override
+	public String toString() {
+		return "User [id=" + id + ", firstName=" + firstName + ", lastName=" + lastName + ", dateOfBirth=" + dateOfBirth
+				+ ", email=" + email + ", address=" + address + ", created=" + created + ", updated=" + updated
+				+ ", emailPassword=" + emailPassword + "]";
+	}
 	
-	
+			
 	
 }
