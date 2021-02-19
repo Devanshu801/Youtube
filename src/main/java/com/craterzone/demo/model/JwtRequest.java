@@ -40,7 +40,4 @@ public void setPassword(String password) {
 public String toString() {
 	return "JwtRequest [username=" + username + ", password=" + password + "]";
 }
-
-
-
 }

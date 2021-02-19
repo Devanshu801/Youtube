@@ -43,7 +43,6 @@ public class JwtController {
 		} catch (BadCredentialsException e) {
 			e.printStackTrace();
 			throw new Exception("Bad Cedentials");
-
 		}
 		
 	UserDetails userDetails =	this.detailsService.loadUserByUsername(jwtRequest.getUsername());

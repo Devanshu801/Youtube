@@ -30,7 +30,7 @@ public class UserController {
 
 
 	//get getAll
-/*
+
 	@GetMapping("/user")
 	private ResponseEntity<Optional<List<User>>> getAll(){
 		Optional<List<User>> userid = userService.getAll();
@@ -39,7 +39,7 @@ public class UserController {
 	
 			return ResponseEntity.noContent().build();
 	 }
-	*/
+	
 
 	
 	@DeleteMapping("{id}")
@@ -51,7 +51,7 @@ public class UserController {
 		return new ResponseEntity<User>(HttpStatus.BAD_REQUEST);
 	}
 	
-	@PostMapping("")
+	@PostMapping("/")
 	private ResponseEntity<User> registerUser(@RequestBody User user){
 		//validation
 		Optional<User> userfromdatabase = userService.registerUser(user);

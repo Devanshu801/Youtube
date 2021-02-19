@@ -36,9 +36,8 @@ public class UserMapper {
 		userdao.getAddress().setUser(userdao);
 		return  userdao;
 	}
-	/*
+	
 	public static List<User> UserdbListtoUserList(List<UserDao> list){
 		return list.stream().map(x -> UserDaoToUser(x)).collect(Collectors.toList());
 	}
-	*/
-}
+	}
